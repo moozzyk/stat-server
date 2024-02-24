@@ -1,13 +1,8 @@
 export class DevToStats {
-  #apiKey;
-  constructor(apiKey) {
-    this.#apiKey = process.env.DEVTO_API_KEY;
-  }
-
   initiateSendToRequest(url) {
     return fetch(url, {
       headers: {
-        "api-key": this.#apiKey,
+        "api-key": process.env.DEVTO_API_KEY,
       },
     });
   }
@@ -26,9 +21,6 @@ export class DevToStats {
 
   async initiateArticleStatRequest(article, startDate) {
     const startDateStr = startDate.toISOString().split("T")[0];
-    console.log(
-      `https://dev.to/api/analytics/historical?start=${startDateStr}&article_id=${article.id}`
-    );
     return this.initiateSendToRequest(
       `https://dev.to/api/analytics/historical?start=${startDateStr}&article_id=${article.id}`
     );
@@ -52,7 +44,6 @@ export class DevToStats {
   createPerDayStats(articleStats) {
     const perDayStats = new Map();
     for (const { article, stats } of articleStats) {
-      // console.log(article.title, stats);
       for (const date in stats) {
         if (!perDayStats.has(date)) {
           perDayStats.set(date, []);
@@ -65,7 +56,7 @@ export class DevToStats {
         }
       }
     }
-    return [...perDayStats.entries()].sort();
+    return [...perDayStats.entries()].sort().reverse();
   }
 
   async getDevToStats(startDate) {
