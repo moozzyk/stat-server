@@ -1,5 +1,5 @@
 import express from "express";
-import { DevToStats } from "./devto.js";
+import { getDevToStats } from "./devto.js";
 
 const port = 3005;
 const app = express();
@@ -9,7 +9,7 @@ app.get("/", async (req, res) => {
   try {
     const startDate = new Date();
     startDate.setDate(startDate.getDate() - 7);
-    const devtoStats = await new DevToStats().getDevToStats(startDate);
+    const devtoStats = await getDevToStats(startDate);
     res.render("index", { devtoStats });
   } catch (error) {
     res.send(error);
