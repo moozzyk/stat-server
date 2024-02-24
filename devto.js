@@ -65,7 +65,6 @@ export class DevToStats {
         }
       }
     }
-    console.log(perDayStats);
     return [...perDayStats.entries()].sort();
   }
 

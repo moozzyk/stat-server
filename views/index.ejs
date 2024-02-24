@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Post</th>
+            <th>Views</th>
+        </tr>
+        <%for (const [date, stats] of locals.devtoStats) { %>
+            <tr>
+                <td><%= date %></td>
+            </tr>
+            <% for (const articleStats of stats) { %>
+                <% console.log(articleStats) %>
+                <tr>
+                    <td></td>
+                    <td><%= articleStats.article%></td>
+                    <td><%= articleStats.views %></td>
+                </tr>
+            <%}%>
+        <%}%>
+    </table>
+</body>
