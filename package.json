@@ -4,13 +4,18 @@
   "description": "Stat server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devStart": "nodemon -e js,ejs,css --env-file=.env index.js index.js"
   },
   "author": "",
   "license": "",
+  "type": "module",
   "dependencies": {
     "better-sqlite3": "^9.4.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
