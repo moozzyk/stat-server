@@ -7,7 +7,9 @@ function initiateSendToRequest(url) {
 }
 
 async function getDevToArticles() {
-  const resp = await initiateSendToRequest("https://dev.to/api/articles/me");
+  const resp = await initiateSendToRequest(
+    "https://dev.to/api/articles/me/published"
+  );
   if (!resp.ok) {
     throw new Error(
       `Error fetching stats. Status: ${resp.status}, StatusText: ${resp.statusText}`
@@ -25,7 +27,7 @@ async function initiateArticleStatRequest(article, startDate) {
 
 async function getArticleStats(articles, startDate) {
   const statResponses = [];
-  // Poor's man rate limiting to avoid 429: Too Many Requests
+  // Poor man's rate limiting to avoid 429: Too Many Requests
   for (const article of articles) {
     const resp = await initiateArticleStatRequest(article, startDate);
     statResponses.push(resp.ok ? await resp.json() : {});
