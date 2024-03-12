@@ -48,10 +48,15 @@ function createPerDayStats(articleStats) {
         perDayStats.set(date, []);
       }
       const totalViews = stats[date].page_views.total;
-      if (totalViews > 0) {
+      const totalReactions = stats[date].reactions.total;
+      if (totalViews > 0 || totalReactions > 0) {
         perDayStats
           .get(date)
-          .push({ article: article.title, views: totalViews });
+          .push({
+            article: article.title,
+            views: totalViews,
+            reactions: totalReactions,
+          });
       }
     }
   }
