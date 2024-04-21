@@ -50,13 +50,15 @@ function createPerDayStats(articleStats) {
       const totalViews = stats[date].page_views.total;
       const totalReactions = stats[date].reactions.total;
       if (totalViews > 0 || totalReactions > 0) {
-        perDayStats
-          .get(date)
-          .push({
-            article: article.title,
-            views: totalViews,
-            reactions: totalReactions,
-          });
+        perDayStats.get(date).push({
+          article: article.title,
+          views: totalViews,
+          reactions: totalReactions,
+          likes: stats[date].reactions.like,
+          unicorns: stats[date].reactions.unicorn,
+          readingList: stats[date].reactions.readinglist,
+          averageReadTime: stats[date].page_views.average_read_time_in_seconds,
+        });
       }
     }
   }

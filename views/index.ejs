@@ -11,7 +11,11 @@
             <th>Date</th>
             <th>Post</th>
             <th>Views</th>
-            <th>Reactions</th>
+            <th>Reaccs</th>
+            <th>❤️</th>
+            <th>🦄</th>
+            <th>Reading<br />List</th>
+            <th>Average<br />Read Time</th>
         </tr>
         <%for (const [date, stats] of locals.devtoStats) { %>
             <tr>
@@ -23,6 +27,10 @@
                     <td><%= articleStats.article%></td>
                     <td><%= articleStats.views %></td>
                     <td><%= articleStats.reactions%></td>
+                    <td><%= articleStats.likes%></td>
+                    <td><%= articleStats.unicorns%></td>
+                    <td><%= articleStats.readingList%></td>
+                    <td><%= articleStats.averageReadTime %></td>
                 </tr>
             <%}%>
         <%}%>
